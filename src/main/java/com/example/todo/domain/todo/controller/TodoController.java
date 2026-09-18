@@ -5,6 +5,7 @@ import com.example.todo.domain.todo.dto.TodoResponseDto;
 import com.example.todo.domain.todo.service.TodoCommandService;
 import com.example.todo.domain.todo.service.TodoQueryService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.ParameterObject;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class TodoController {
     @GetMapping
     public ResponseEntity<TodoResponseDto.TodoPageDTO> getTodos(
             @RequestParam(required = false) Boolean completed,
-            @PageableDefault(size = 10, sort = "id") Pageable pageable
+            @ParameterObject @PageableDefault(size = 10, sort = "id") Pageable pageable
     ) {
         return ResponseEntity.ok(todoQueryService.getTodos(completed, pageable));
     }

@@ -3,6 +3,7 @@ package com.example.todo.domain.todo.dto;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TodoResponseDto {
 
@@ -12,6 +13,16 @@ public class TodoResponseDto {
             Long todoId,
             String name,
             LocalDateTime createdAt
+    ) {}
+
+    // 할 일 목록 조회 결과
+    @Builder
+    public record TodoPageDTO(
+            List<TodoDTO> todos,
+            int page,
+            int size,
+            long totalElements,
+            int totalPages
     ) {}
 
     // 할 일 조회 결과

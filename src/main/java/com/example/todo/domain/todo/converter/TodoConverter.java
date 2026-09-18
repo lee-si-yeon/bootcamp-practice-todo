@@ -3,6 +3,7 @@ package com.example.todo.domain.todo.converter;
 import com.example.todo.domain.todo.dto.TodoRequestDto;
 import com.example.todo.domain.todo.dto.TodoResponseDto;
 import com.example.todo.domain.todo.entity.Todo;
+import org.springframework.data.domain.Page;
 
 public class TodoConverter {
 
@@ -19,6 +20,19 @@ public class TodoConverter {
                 .todoId(todo.getId())
                 .name(todo.getName())
                 .createdAt(todo.getCreatedAt())
+                .build();
+    }
+
+    // entity page -> 할 일 목록 조회 DTO
+    public static TodoResponseDto.TodoPageDTO toTodoPageDTO(Page<Todo> todos) {
+        Page<TodoResponseDto.TodoDTO> todoDTOs = todos.map(TodoConverter::toTodoDTO);
+
+        return TodoResponseDto.TodoPageDTO.builder()
+                .todos(todoDTOs.getContent())
+                .page(todoDTOs.getNumber())
+                .size(todoDTOs.getSize())
+                .totalElements(todoDTOs.getTotalElements())
+                .totalPages(todoDTOs.getTotalPages())
                 .build();
     }
 

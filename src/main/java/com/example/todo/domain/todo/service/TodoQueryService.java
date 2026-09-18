@@ -4,12 +4,11 @@ import com.example.todo.domain.todo.converter.TodoConverter;
 import com.example.todo.domain.todo.dto.TodoResponseDto;
 import com.example.todo.domain.todo.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +18,8 @@ public class TodoQueryService {
     private final TodoRepository todoRepository;
 
     // 할 일 목록 조회
-    public List<TodoResponseDto.TodoDTO> getTodos() {
-        return todoRepository.findAll().stream()
-                .map(TodoConverter::toTodoDTO)
-                .toList();
+    public TodoResponseDto.TodoPageDTO getTodos(Boolean completed, Pageable pageable) {
+        return TodoConverter.toTodoPageDTO(completed == null ? todoRepository.findAll(pageable) : todoRepository.findByIsCompleted(completed, pageable));
     }
 
     // 할 일 상세 조회

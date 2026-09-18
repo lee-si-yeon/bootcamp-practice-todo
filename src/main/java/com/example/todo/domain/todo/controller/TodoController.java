@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -57,5 +58,14 @@ public class TodoController {
             @Valid @RequestBody TodoRequestDto.UpdateTodoDTO request
     ) {
         return ResponseEntity.ok(todoCommandService.updateTodo(todoId, request));
+    }
+
+    @Operation(summary = "할 일 삭제")
+    @DeleteMapping("/{todoId}")
+    public ResponseEntity<Void> deleteTodo(
+            @PathVariable Long todoId
+    ) {
+        todoCommandService.deleteTodo(todoId);
+        return ResponseEntity.noContent().build();
     }
 }

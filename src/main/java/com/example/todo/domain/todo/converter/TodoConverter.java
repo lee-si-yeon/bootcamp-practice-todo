@@ -18,4 +18,12 @@ public class TodoConverter {
                 .name(todo.getName())
                 .build();
     }
+
+    public static TodoResponseDto.TodoDTO toTodoDTO(Todo todo) {
+        return TodoResponseDto.TodoDTO.builder()
+                .todoId(todo.getId())
+                .name(todo.getName())
+                .completed(todo.isCompleted())
+                .build();
+    }
 }

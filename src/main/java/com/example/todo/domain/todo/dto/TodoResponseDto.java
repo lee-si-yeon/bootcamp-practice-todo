@@ -10,4 +10,12 @@ public class TodoResponseDto {
             Long todoId,
             String name
     ) {}
+
+    // 할 일 조회 결과
+    @Builder
+    public record TodoDTO(
+            Long todoId,
+            String name,
+            boolean completed
+    ) {}
 }

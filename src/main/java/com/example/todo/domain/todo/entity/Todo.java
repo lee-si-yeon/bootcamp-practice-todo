@@ -22,4 +22,8 @@ public class Todo extends BaseEntity {
     @Builder.Default
     @Column(name = "is_completed", nullable = false)
     private boolean isCompleted = false;  // 완료 여부
+
+    public void updateName(String name) {
+        this.name = name.strip();
+    }
 }

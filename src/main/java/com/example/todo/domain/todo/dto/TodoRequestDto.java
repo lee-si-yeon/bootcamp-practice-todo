@@ -13,4 +13,12 @@ public class TodoRequestDto {
             @Schema(description = "제목", example = "과제하기")
             String name
     ) {}
+
+    // 할 일 수정
+    public record UpdateTodoDTO(
+            @NotBlank(message = "과제명은 필수 입력 값입니다.")
+            @Size(max = 100, message = "과제명은 100자 이하여야 합니다.")
+            @Schema(description = "수정할 제목", example = "과제 제출하기")
+            String name
+    ) {}
 }

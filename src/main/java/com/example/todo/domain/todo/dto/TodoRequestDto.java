@@ -1,0 +1,16 @@
+package com.example.todo.domain.todo.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+public class TodoRequestDto {
+
+    // 할 일 신규 등록
+    public record CreateTodoDTO(
+            @NotBlank(message = "과제명은 필수 입력 값입니다.")
+            @Size(max = 100, message = "과제명은 100자 이하여야 합니다.")
+            @Schema(description = "제목", example = "과제하기")
+            String name
+    ) {}
+}

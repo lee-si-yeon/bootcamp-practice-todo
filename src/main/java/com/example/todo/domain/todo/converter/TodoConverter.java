@@ -28,6 +28,7 @@ public class TodoConverter {
                 .todoId(todo.getId())
                 .name(todo.getName())
                 .completed(todo.isCompleted())
+                .createdAt(todo.getCreatedAt())
                 .build();
     }
 

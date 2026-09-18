@@ -19,7 +19,8 @@ public class TodoResponseDto {
     public record TodoDTO(
             Long todoId,
             String name,
-            boolean completed
+            boolean completed,
+            LocalDateTime createdAt
     ) {}
 
     // 할 일 수정 결과

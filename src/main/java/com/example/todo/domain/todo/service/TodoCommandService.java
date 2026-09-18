@@ -37,6 +37,14 @@ public class TodoCommandService {
         todoRepository.delete(getTodo(todoId));
     }
 
+    // 할 일 완료 상태 변경
+    public TodoResponseDto.UpdateCompletionResultDTO updateCompletion(Long todoId, TodoRequestDto.UpdateCompletionDTO request) {
+        Todo todo = getTodo(todoId);
+        todo.updateCompleted(request.completed());
+        todoRepository.flush();
+        return TodoConverter.toUpdateCompletionResultDTO(todo);
+    }
+
     private Todo getTodo(Long todoId) {
         return todoRepository.findById(todoId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "할 일을 찾을 수 없습니다."));

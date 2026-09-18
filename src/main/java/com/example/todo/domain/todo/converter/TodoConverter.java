@@ -39,4 +39,13 @@ public class TodoConverter {
                 .updatedAt(todo.getUpdatedAt())
                 .build();
     }
+
+    // entity -> 할 일 완료 상태 변경 DTO
+    public static TodoResponseDto.UpdateCompletionResultDTO toUpdateCompletionResultDTO(Todo todo) {
+        return TodoResponseDto.UpdateCompletionResultDTO.builder()
+                .todoId(todo.getId())
+                .completed(todo.isCompleted())
+                .updatedAt(todo.getUpdatedAt())
+                .build();
+    }
 }

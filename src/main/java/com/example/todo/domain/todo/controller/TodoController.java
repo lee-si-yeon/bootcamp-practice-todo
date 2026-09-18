@@ -68,4 +68,13 @@ public class TodoController {
         todoCommandService.deleteTodo(todoId);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "할 일 완료 상태 변경")
+    @PatchMapping("/{todoId}/completed")
+    public ResponseEntity<TodoResponseDto.UpdateCompletionResultDTO> updateCompletion(
+            @PathVariable Long todoId,
+            @Valid @RequestBody TodoRequestDto.UpdateCompletionDTO request
+    ) {
+        return ResponseEntity.ok(todoCommandService.updateCompletion(todoId, request));
+    }
 }

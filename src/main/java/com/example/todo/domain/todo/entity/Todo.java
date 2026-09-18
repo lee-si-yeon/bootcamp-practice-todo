@@ -26,4 +26,8 @@ public class Todo extends BaseEntity {
     public void updateName(String name) {
         this.name = name.strip();
     }
+
+    public void updateCompleted(boolean completed) {
+        this.isCompleted = completed;
+    }
 }

@@ -29,4 +29,12 @@ public class TodoResponseDto {
             String name,
             LocalDateTime updatedAt
     ) {}
+
+    // 할 일 완료 상태 변경 결과
+    @Builder
+    public record UpdateCompletionResultDTO(
+            Long todoId,
+            boolean completed,
+            LocalDateTime updatedAt
+    ) {}
 }
